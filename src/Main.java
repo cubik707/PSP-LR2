@@ -2,16 +2,9 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Book book1 = new Book("Мастер и Маргарита", 500.0, true);
-        Book book2 = new Book("Преступление и наказание", 300.0);
-
-        WriterInfo writerInfo = new WriterInfo();
-
-        System.out.println("Информация о книге 1:");
-        writerInfo.printBookInfo(book1);
-
-        System.out.println("\nИнформация о книге 2:");
-        writerInfo.printBookInfo(book2);
+        Book[] books = new Book[3];
+        books[0] = new Book("Мастер и Маргарита", 500.0, true);
+        books[1] = new Book("Преступление и наказание", 300.0);
 
         // Ввод данных для третьей книги от пользователя
         Scanner scanner = new Scanner(System.in);
@@ -26,11 +19,22 @@ public class Main {
         System.out.print("Есть ли иллюстрации? (true/false): ");
         boolean hasIllustrations = scanner.nextBoolean();
 
-        Book book3 = new Book(title, price, hasIllustrations);
-
-        System.out.println("\nИнформация о книге 3:");
-        writerInfo.printBookInfo(book3);
+        books[2] = new Book(title, price, hasIllustrations);
 
         scanner.close();
+
+        // Вывод информации о книгах
+        WriterInfo writerInfo = new WriterInfo();
+        for (int i = 0; i < books.length; i++) {
+            System.out.println("\nИнформация о книге " + (i + 1) + ":");
+            writerInfo.printBookInfo(books[i]);
+        }
+
+        // Подсчёт общей стоимости и количества книг с иллюстрациями
+        double totalPrice = Book.caculateTotalPrice(books);
+        int booksWithImages = Book.countBooksWithImage(books);
+
+        System.out.println("\nОбщая стоимость всех книг: " + totalPrice + " рублей");
+        System.out.println("Количество книг с иллюстрациями: " + booksWithImages);
     }
 }

@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 public class Book {
     private String title;
     private double price;
@@ -54,5 +56,24 @@ public class Book {
     public void printIllustrationsInfo() {
         String illustrations = hasImage ? "Есть иллюстрации" : "Иллюстраций нет";
         System.out.println(illustrations);
+    }
+
+    //Статические методы
+    public static double caculateTotalPrice(Book @NotNull [] books) {
+        double totalPrice = 0;
+        for (Book book : books) {
+            totalPrice += book.getPrice();
+        }
+        return totalPrice;
+    }
+
+    public static int countBooksWithImage(Book @NotNull [] books) {
+        int count = 0;
+        for (Book book : books) {
+            if (book.isHasImage()) {
+                count++;
+            }
+        }
+        return count;
     }
 }
