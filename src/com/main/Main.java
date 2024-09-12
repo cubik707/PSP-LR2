@@ -1,3 +1,8 @@
+package com.main;
+
+import com.book.Book;
+import com.book.WriterInfo;
+
 import java.util.Scanner;
 
 public class Main {

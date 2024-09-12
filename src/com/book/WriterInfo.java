@@ -1,3 +1,5 @@
+package com.book;
+
 import org.jetbrains.annotations.NotNull;
 
 public class WriterInfo {
